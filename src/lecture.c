@@ -81,12 +81,27 @@ void fre_all(char **tab, int x)
 
 int main(int ac, char **av)
 {
+	int idx = 0;
 	char buf[12];
 	int lines = fs_lines(buf, av);
 	int colms = fs_colums(buf, av);
 	struct stat size;
 	int stats = stat(av[1], &size);
+	char *tab = malloc(size.st_size);
 
-	printf("%d\n", size.st_size);
+	int fd = open(av[1], O_RDONLY);
+	read(fd, tab, size.st_size - 1);
+	while(tab[idx] != '\n')
+		idx = idx + 1;
+	idx++;
+	algo(tab, colms, lines, idx);
+	printf("\n");
+	printf("\n");
+	while (tab[idx]) {
+		printf("%c", tab[idx]);
+		idx++;
+	}
+	printf("\n");
+	free(tab);
 	return (0);
 }
