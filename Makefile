@@ -12,6 +12,7 @@ SRC	=	src/lecture.c			\
 		src/my_putchar.c		\
 		src/my_put_nbr.c		\
 		src/algo.c			\
+		src/stock_on_tab.c		\
 		src/my_putstr.c			\
 		src/my_strlen.c		
 

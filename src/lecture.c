@@ -35,7 +35,7 @@ int fs_lines(char *buf, char **av)
 	return (line);
 }
 
-int fs_colums(char *buf, char **av)
+int fs_colums(char **av)
 {
 	int x = 0;
 	int size = 1;
@@ -62,46 +62,28 @@ void mal_all(char **tab, int y, int x)
 
 	while (i != x) {
 		tab[i] = malloc(sizeof(char) * y);
-		printf("%d\n", i);
 		i++;
 	}
 	tab[i - 1] = NULL;
 }
 
-void fre_all(char **tab, int x)
-{
-	int i = 0;
-
-	while (i != x + 1) {
-		printf("%d\n", i);
-		free(tab[i]);
-		i = i + 1;
-	}
-}
-
 int main(int ac, char **av)
 {
-	int idx = 0;
-	char buf[12];
-	int lines = fs_lines(buf, av);
-	int colms = fs_colums(buf, av);
 	struct stat size;
 	int stats = stat(av[1], &size);
+	int idx = 0;
+	char buf[12];
+	int lines;
+	int colms;
 	char *tab = malloc(size.st_size);
 
-	int fd = open(av[1], O_RDONLY);
-	read(fd, tab, size.st_size - 1);
-	while(tab[idx] != '\n')
-		idx = idx + 1;
-	idx++;
+	if (stats == -1)
+		return (84);
+	lines = fs_lines(buf, av);
+	colms = fs_colums(av);
+	stock_on_tab(tab, av, &size);
 	algo(tab, colms, lines, idx);
-	printf("\n");
-	printf("\n");
-	while (tab[idx]) {
-		printf("%c", tab[idx]);
-		idx++;
-	}
-	printf("\n");
+	my_putstr(tab);
 	free(tab);
 	return (0);
 }
