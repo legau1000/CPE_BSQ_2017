@@ -56,12 +56,18 @@ int search_rect_size(s_rect *rect, int colms, char *tab, int *index)
 	rect->x = *index;
 }
 
-void print_x(char *tab, s_rect *rect, int colms)
+int print_x(char *tab, s_rect *rect, int colms)
 {
 	int x = 0;
 	int y = 0;
 	int s_x = rect->x;
 
+	if (rect->value == 0)
+		return (0);
+	else if (rect->value == 1) {
+		tab[rect->x] = 'x';
+		return (0);
+	}
 	while (y <= rect->value) {
 		while (x <= rect->value) {
 			tab[rect->x] = 'x';
@@ -89,10 +95,7 @@ void search_more_biggest(s_rect *rect1,s_rect *rect2, int colms, char *tab)
 		}
 		index++;
 	}
-	if (rect1->value >= rect2->value)
-		print_x(tab, rect1, colms);
-	else
-		print_x(tab, rect2, colms);
+	print_x(tab, rect1, colms);
 }
 
 void algo(char *tab, int colms, int lines, int idx)
