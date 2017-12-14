@@ -25,7 +25,8 @@ typedef struct t_rect
 }s_rect;
 
 int my_getnbr(char*);
-void algo(char *tab, int colms, int lines, int idx);
+void algo(char *tab, int colms, int idx);
 void stock_on_tab(char *tab, char **av, struct stat *size);
+void my_putstr(char const *str);
 
 #endif

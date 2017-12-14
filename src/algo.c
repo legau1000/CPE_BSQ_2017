@@ -10,8 +10,8 @@
 
 void init_val(s_rect *rect1, s_rect *rect2, int idx)
 {
-	rect1->value = 1;
-	rect2->value = 1;
+	rect1->value = 0;
+	rect2->value = 0;
 	rect1->x = idx;
 	rect2->x = idx;
 	rect1->y = 0;
@@ -64,10 +64,6 @@ int print_x(char *tab, s_rect *rect, int colms)
 
 	if (rect->value == 0)
 		return (0);
-	else if (rect->value == 1) {
-		tab[rect->x] = 'x';
-		return (0);
-	}
 	while (y <= rect->value) {
 		while (x <= rect->value) {
 			tab[rect->x] = 'x';
@@ -98,7 +94,7 @@ void search_more_biggest(s_rect *rect1,s_rect *rect2, int colms, char *tab)
 	print_x(tab, rect1, colms);
 }
 
-void algo(char *tab, int colms, int lines, int idx)
+void algo(char *tab, int colms, int idx)
 {
 	s_rect rect1;
 	s_rect rect2;
