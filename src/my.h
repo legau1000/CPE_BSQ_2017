@@ -28,5 +28,6 @@ int my_getnbr(char*);
 void algo(char *tab, int colms, int idx);
 void stock_on_tab(char *tab, char **av, struct stat *size);
 void my_putstr(char const *str);
+int my_strlen(char*);
 
 #endif

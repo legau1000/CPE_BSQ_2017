@@ -45,7 +45,7 @@ int main(int ac, char **av)
 	int colms;
 	char *tab = malloc(size.st_size);
 
-	if (stats == -1)
+	if (stats == -1 || av[1][my_strlen(av[1]) - 1] == '/')
 		return (84);
 	colms = fs_colums(av);
 	stock_on_tab(tab, av, &size);
